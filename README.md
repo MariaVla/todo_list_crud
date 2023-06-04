@@ -31,3 +31,12 @@ To run tests:
 ![crunchloop](https://crunchloop.io/logo-blue.png)
 
 We strongly believe in giving back :rocket:. Let's work together [`Get in touch`](https://crunchloop.io/contact).
+
+--
+
+## ---
+
+- `$ bundle install`
+- `$ bin/rails db:migrate RAILS_ENV=development`
+- `$ bin/puma`
+  <!-- - why? why not `rails server`? -->
