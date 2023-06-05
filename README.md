@@ -90,5 +90,5 @@ Example:
 
 ## TODO
 
-- [ ] Error handling.
-- [ ] More and better test.
+- [ ] Better error handling.
+- [ ] More and better tests.
