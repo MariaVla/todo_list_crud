@@ -76,6 +76,10 @@ Update todolistsitems completed to true:
 
 - PUT `/api/todolistsitems/:id`
 
+Destroy todo lists item:
+
+- DELETE `/api/todolistsitems/:id`
+
 Example:
 
 ```json
