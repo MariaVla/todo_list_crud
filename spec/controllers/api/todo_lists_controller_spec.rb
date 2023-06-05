@@ -35,4 +35,25 @@ describe Api::TodoListsController do
       end
     end
   end
+
+  describe 'Create Todo List' do
+    let!(:todo_list) { TodoList.create(name: 'My todo list') }
+    let!(:todo_1) { TodoListsItem.create(description: 'todo 1', todo_list_id: todo_list.id) }
+    let!(:todo_2) { TodoListsItem.create(description: 'todo 2', todo_list_id: todo_list.id) }
+
+    context 'when format is JSON' do
+      it "todo list named created correctly" do  
+        expect(todo_list.name).to eq('My todo list')
+      end
+
+      it "todo lists item created correclty in the todo list" do  
+        expect(todo_list.todo_lists_items.count).to eq(2)
+        expect(todo_1.todo_list_id).to eq(todo_list.id)
+      end
+
+      it "todo lists item created with completed false" do  
+        expect(todo_1.completed).to eq(false)
+      end
+    end
+  end
 end

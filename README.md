@@ -34,13 +34,57 @@ We strongly believe in giving back :rocket:. Let's work together [`Get in touch`
 
 --
 
-## ---
+# How to test the API
 
-- `$ bundle install`
-- `$ bin/rails db:migrate RAILS_ENV=development`
-- `$ bin/puma`
-  <!-- - why? why not `rails server`? -->
+Show todolists and individual todolist:
 
-<!-- TODO -->
+- GET `/api/todolists`
+- GET `/api/todolists/:id`
 
-- [ ] Manejo de errores
+Create todolist with the todolistsitems:
+
+- POST `/api/todolists`
+
+Example body in postman:
+
+```json
+{
+  "name": "my todo list",
+  "todo_lists_item": {
+    "descriptions": ["todo 1", "todo 2"]
+  }
+}
+```
+
+Update todo list name:
+
+- PUT `/api/todolists/:id`
+
+Example:
+
+```json
+{
+  "name": "new todo list name"
+}
+```
+
+Destroy todo list:
+
+- DELETE `/api/todolists/:id`
+
+Update todolistsitems completed to true:
+
+- PUT `/api/todolistsitems/:id`
+
+Example:
+
+```json
+{
+  "completed": true
+}
+```
+
+## TODO
+
+- [ ] Error handling.
+- [ ] More and better test.
