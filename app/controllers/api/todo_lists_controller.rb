@@ -16,15 +16,15 @@ module Api
 
     # PUT /api/todolists/:id
     def update 
-      todo_list = TodoList.find_by(id: params[:id])
+      todo_list = TodoList.find(params[:id])
 
-      if todo_list
+      # if todo_list
         todo_list.update(todo_list_params)
         render json: todo_list
-      else
-        # raise ActiveRecord::RecordNotFound
-        render json: { message: "Record not found." }, status: :not_found
-      end
+      # else
+      #   # raise ActiveRecord::RecordNotFound
+      #   render json: { message: "Record not found." }, status: :not_found
+      # end
     end
  
 
@@ -35,8 +35,8 @@ module Api
       todo_list.destroy
       render json: { message: "Record successfully deleted."}, status: :ok
 
-    rescue
-      render json: { message: "Record not found." }, status: :not_found
+    # rescue ActiveRecord::RecordNotFound
+    #   render json: { message: "Record not found." }, status: :not_found
     end
 
     private
