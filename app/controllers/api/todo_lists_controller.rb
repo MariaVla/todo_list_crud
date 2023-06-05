@@ -7,26 +7,37 @@ module Api
       respond_to :json
     end
 
+    # GET /api/todolists/:id
+    def show
+      todo_list = TodoList.find(params[:id])
+
+      render json: {
+        id: todo_list.id, 
+        name: todo_list.name, 
+        todo_lists_items: todo_list.todo_lists_items
+      }, status: :ok
+    end
+
     # POST /api/todolists
     def create 
       todo_list = TodoList.create(todo_list_params)
+  
+      todos_description = params[:todo_lists_item][:descriptions]
 
-      render json: todo_list
+      todos_description.each do |todo_description|
+        todo_list.todo_lists_items.create(description: todo_description)
+      end
+
+      render json: todo_list, status: :ok
     end
 
     # PUT /api/todolists/:id
     def update 
       todo_list = TodoList.find(params[:id])
 
-      # if todo_list
-        todo_list.update(todo_list_params)
-        render json: todo_list
-      # else
-      #   # raise ActiveRecord::RecordNotFound
-      #   render json: { message: "Record not found." }, status: :not_found
-      # end
+      todo_list.update(todo_list_params)
+      render json: todo_list
     end
- 
 
     # DELETE /api/todolists/:id
     def destroy
@@ -34,15 +45,12 @@ module Api
 
       todo_list.destroy
       render json: { message: "Record successfully deleted."}, status: :ok
-
-    # rescue ActiveRecord::RecordNotFound
-    #   render json: { message: "Record not found." }, status: :not_found
     end
 
     private
 
     def todo_list_params
-      params.require(:todo_list).permit(:name)
+      params.require(:todo_list).permit(:name, todo_lists_item: [descriptions: []])
     end
     
   end

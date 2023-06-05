@@ -40,3 +40,7 @@ We strongly believe in giving back :rocket:. Let's work together [`Get in touch`
 - `$ bin/rails db:migrate RAILS_ENV=development`
 - `$ bin/puma`
   <!-- - why? why not `rails server`? -->
+
+<!-- TODO -->
+
+- [ ] Manejo de errores
